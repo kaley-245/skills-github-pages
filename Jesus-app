@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spread the Word</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome to Spread the Word</h1>
+    <p>Helping you share the message of Jesus</p>
+  </header>
+
+  <section class="verse-of-the-day">
+    <h2>Verse of the Day</h2>
+    <p id="verse">Loading...</p>
+    <button id="share-btn">Share this verse</button>
+  </section>
+
+  <section class="prayer-requests">
+    <h2>Prayer Requests</h2>
+    <a href="prayer-request.html" class="button">Submit Prayer Request</a>
+    <p>Click above to pray for others.</p>
+  </section>
+
+  <section class="share-faith">
+    <h2>Share Your Faith</h2>
+    <a href="share-story.html" class="button">Share Your Story</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Spread the Word App</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  margin: 0;
+}
+
+section {
+  margin: 20px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button, .button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover, .button:hover {
+  background-color: #45a049;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+}
+// A simple Bible verse of the day feature (using a static verse for now)
+document.addEventListener("DOMContentLoaded", function() {
+  const verseOfTheDay = "For I know the plans I have for you, declares the Lord, plans for welfare and not for evil, to give you a future and a hope. - Jeremiah 29:11";
+  const verseElement = document.getElementById("verse");
+
+  // Display the verse
+  verseElement.innerText = verseOfTheDay;
+
+  // Handle share button click
+  const shareButton = document.getElementById("share-btn");
+  shareButton.addEventListener("click", function() {
+    if (navigator.share) {
+      navigator.share({
+        title: "Verse of the Day",
+        text: verseOfTheDay,
+        url: window.location.href
+      })
+      .then(() => console.log("Verse shared successfully"))
+      .catch((error) => console.log("Error sharing: ", error));
+    } else {
+      alert("Sharing not supported on your browser.");
+    }
+  });
+});
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prayer Request</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Submit Your Prayer Request</h1>
+  </header>
+
+  <section>
+    <form id="prayer-form">
+      <label for="prayer-request">Your Prayer Request:</label>
+      <textarea id="prayer-request" rows="4" placeholder="Write your prayer request here..."></textarea>
+      <button type="submit">Submit Request</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Spread the Word App</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
